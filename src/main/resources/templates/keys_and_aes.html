@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::body})}">
+
+<body>
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h3 class="card-title mb-4">Key Pair & AES Key Management</h3>
+            <div th:if="${message}" class="alert alert-info" th:text="${message}"></div>
+            <form method="post" class="row g-4 mb-4">
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">ECDSA Key Pair</h5>
+                            <div class="d-flex gap-2 mb-3">
+                                <button class="btn btn-primary" type="submit" name="generate_keypair">Generate Key
+                                    Pair</button>
+                                <button class="btn btn-danger" type="submit" name="delete_key"
+                                    onclick="return confirm('Delete key pair?');">Delete Key Pair</button>
+                            </div>
+                            <ul class="mb-3">
+                                <li>Private Key: <strong th:text="${privExists?'Exists':'Not found'}"></strong></li>
+                                <li>Public Key: <strong th:text="${pubExists?'Exists':'Not found'}"></strong></li>
+                            </ul>
+                            <div th:if="${pubKey}">
+                                <label class="form-label">Public Key:</label>
+                                <textarea rows="6" readonly class="form-control bg-light mb-3"
+                                    th:text="${pubKey}"></textarea>
+                            </div>
+                            <div th:if="${privKey}">
+                                <button class="btn btn-outline-secondary" type="button"
+                                    onclick="document.getElementById('privbox').style.display='block';this.style.display='none';">Show
+                                    Private Key</button>
+                                <div id="privbox" style="display:none;">
+                                    <textarea rows="8" readonly class="form-control bg-light"
+                                        th:text="${privKey}"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">AES Key</h5>
+                            <div class="d-flex gap-2 mb-3">
+                                <button class="btn btn-primary" type="submit" name="generate_aes">Generate AES
+                                    Key</button>
+                                <button class="btn btn-danger" type="submit" name="delete_aes"
+                                    onclick="return confirm('Delete AES key?');">Delete AES Key</button>
+                            </div>
+                            <ul class="mb-3">
+                                <li>AES Key: <strong th:text="${aesExists?'Exists':'Not found'}"></strong></li>
+                            </ul>
+                            <div th:if="${aesKey}">
+                                <button class="btn btn-outline-secondary mb-2" type="button"
+                                    onclick="document.getElementById('aesbox').style.display='block';this.style.display='none';">Show
+                                    AES Key</button>
+                                <div id="aesbox" style="display:none;">
+                                    <textarea rows="2" readonly class="form-control bg-light"
+                                        th:text="${aesKey}"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

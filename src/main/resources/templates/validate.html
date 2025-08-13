@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::body})}">
+
+<body>
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h3 class="card-title mb-4">Validate License</h3>
+            <form method="post">
+                <div class="mb-3">
+                    <label class="form-label">License Key</label>
+                    <textarea class="form-control" name="licenseKey" required rows="3"
+                        th:text="${licenseKeyInput}"></textarea>
+                </div>
+                <div class="mb-3 form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="use_hw"
+                        th:checked="${hwFingerprintInput!=null and hwFingerprintInput!=''}">
+                    <label class="form-check-label" for="use_hw">Validate HW Fingerprint</label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">HW Fingerprint</label>
+                    <input class="form-control" name="hwFingerprint" id="hwField" th:value="${hwFingerprintInput}">
+                </div>
+                <div class="mb-3 form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name="aes" id="aes" th:checked="${aesChecked}">
+                    <label class="form-check-label" for="aes">Use AES Key</label>
+                </div>
+                <button class="btn btn-primary rounded-pill px-4" type="submit">Validate</button>
+            </form>
+            <div th:if="${result}" class="mt-4">
+                <h5>Result:
+                    <span class="badge" th:classappend="${result=='VALID'?' bg-success':' bg-danger'}"
+                        th:text="${result}"></span>
+                </h5>
+                <p>Revoked: <strong th:text="${revoked}"></strong></p>
+                <div th:if="${prettyData}">
+                    <label>License Data:</label>
+                    <pre class="bg-light p-2 rounded" th:text="${prettyData}"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

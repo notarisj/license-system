@@ -1,0 +1,34 @@
+{
+  "properties": [
+    {
+      "name": "app.keys.private",
+      "type": "java.lang.String",
+      "description": "Path to the private key file for license signing"
+    },
+    {
+      "name": "app.keys.public",
+      "type": "java.lang.String",
+      "description": "Path to the public key file for license verification"
+    },
+    {
+      "name": "app.keys.aes",
+      "type": "java.lang.String",
+      "description": "Path to the AES key file for encryption"
+    },
+    {
+      "name": "app.api.whitelist",
+      "type": "java.lang.String",
+      "description": "Comma-separated list of allowed API keys"
+    },
+    {
+      "name": "app.admin.username",
+      "type": "java.lang.String",
+      "description": "Username for the admin account"
+    },
+    {
+      "name": "app.admin.password",
+      "type": "java.lang.String",
+      "description": "Password for the admin account"
+    }
+  ]
+}

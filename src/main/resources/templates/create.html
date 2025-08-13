@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::body})}">
+
+<body>
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h3 class="card-title mb-4">Create License</h3>
+            <form method="post">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Customer ID</label>
+                        <input class="form-control" name="customerId" required />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Days Valid</label>
+                        <input class="form-control" type="number" name="daysValid" value="30" />
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" id="use_hw" checked>
+                        <label class="form-check-label" for="use_hw">Bind to HW Fingerprint</label>
+                    </div>
+                    <label class="form-label">HW Fingerprint</label>
+                    <input class="form-control" name="hwFingerprint" id="hwField" />
+                    <div class="form-text">Leave blank if not binding.</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Metadata (JSON)</label>
+                    <textarea class="form-control" rows="3" name="metadata" id="metaBox"></textarea>
+                    <button type="button" class="btn btn-outline-secondary mt-2" onclick="fmtJson()">Validate & Format
+                        JSON</button>
+                    <div id="json-feedback" class="form-text"></div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Usage Limit</label>
+                        <input class="form-control" type="number" name="usageLimit" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">License Version</label>
+                        <select class="form-select" name="version">
+                            <option value="2.0" selected>2.0</option>
+                            <option value="1.0">1.0</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3 form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name="aes" id="aes">
+                    <label class="form-check-label" for="aes">Use AES Encryption</label>
+                </div>
+                <button class="btn btn-primary rounded-pill px-4" type="submit">Generate</button>
+            </form>
+            <div th:if="${licenseKey}" class="mt-4">
+                <label>License Key:</label>
+                <textarea class="form-control" rows="4" readonly th:text="${licenseKey}"></textarea>
+            </div>
+        </div>
+    </div>
+    <script>
+        function fmtJson() {
+            const area = document.getElementById('metaBox');
+            const fb = document.getElementById('json-feedback');
+            if (!area.value.trim()) { fb.textContent = ''; return; }
+            try {
+                const obj = JSON.parse(area.value);
+                area.value = JSON.stringify(obj, null, 2);
+                fb.textContent = 'Valid JSON';
+                fb.className = 'form-text text-success';
+            } catch (e) {
+                fb.textContent = 'Invalid JSON: ' + e.message;
+                fb.className = 'form-text text-danger';
+            }
+        }
+    </script>
+</body>
+
+</html>

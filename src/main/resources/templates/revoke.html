@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::body})}">
+
+<body>
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h3 class="card-title mb-4">Revoke License</h3>
+            <form method="post" class="row g-3">
+                <div class="col-12">
+                    <label class="form-label">License UUID</label>
+                    <input class="form-control" name="uuid" required />
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-danger rounded-pill px-4" type="submit">Revoke</button>
+                </div>
+            </form>
+            <div th:if="${message}" class="alert alert-info mt-4" th:text="${message}"></div>
+        </div>
+    </div>
+</body>
+
+</html>

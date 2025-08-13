@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::body})}">
+
+<body>
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h2 class="card-title mb-3">License Management System</h2>
+            <p>Welcome. Features mirror original implementation (ECDSA P-521, optional AES-GCM encryption, hardware
+                binding, metadata, usage limits, revocation).</p>
+            <ul>
+                <li><strong>Create License</strong></li>
+                <li><strong>Validate License</strong></li>
+                <li><strong>Keys & AES</strong></li>
+                <li><strong>Revoke License</strong></li>
+                <li><strong>All Licenses</strong></li>
+                <li><strong>Get HW Fingerprint</strong></li>
+                <li><strong>API</strong>: POST /api/validate, /api/create, /api/revoke</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
