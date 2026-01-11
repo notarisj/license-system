@@ -54,30 +54,6 @@ API key whitelist: [`com.notaris.license_system.config.ApiKeyConfig`](src/main/j
 
 All non-/login routes require authentication (UI). API create/revoke additionally require an API key (header `X-API-KEY` or query `api_key`).
 
-## Data Model
-
-Entities:
-- [`com.notaris.license_system.model.GeneratedLicense`](src/main/java/com/notaris/license_system/model/GeneratedLicense.java)
-- [`com.notaris.license_system.model.RevokedLicense`](src/main/java/com/notaris/license_system/model/RevokedLicense.java)
-
-Repositories:
-- [`com.notaris.license_system.repo.GeneratedLicenseRepository`](src/main/java/com/notaris/license_system/repo/GeneratedLicenseRepository.java)
-- [`com.notaris.license_system.repo.RevokedLicenseRepository`](src/main/java/com/notaris/license_system/repo/RevokedLicenseRepository.java)
-
-Service layer: [`com.notaris.license_system.service.LicenseService`](src/main/java/com/notaris/license_system/service/LicenseService.java)
-
-Crypto helpers:
-- Generator: [`com.notaris.license_system.crypto.LicenseGenerator`](src/main/java/com/notaris/license_system/crypto/LicenseGenerator.java)
-- Validator: [`com.notaris.license_system.crypto.LicenseValidator`](src/main/java/com/notaris/license_system/crypto/LicenseValidator.java)
-- Key ops: [`com.notaris.license_system.crypto.LicenseSystem`](src/main/java/com/notaris/license_system/crypto/LicenseSystem.java)
-
-## Web UI
-
-Controller: [`com.notaris.license_system.controller.WebController`](src/main/java/com/notaris/license_system/controller/WebController.java)  
-Templates in [src/main/resources/templates](src/main/resources/templates).
-
-Features: create, validate, key/AES management, revoke, list licenses.
-
 ## REST API
 
 Controller: [`com.notaris.license_system.controller.ApiController`](src/main/java/com/notaris/license_system/controller/ApiController.java)
